@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffc2d4, #ff8ab8, #ffa4c2);
+  color: #5a2a3a;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* CORAZONES FLOTANTES */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10px;
+  color: #ff5f9e;
+  font-size: 1.2rem;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.3) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+/* HERO SECTION */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(230, 30, 115, 0.5);
+  margin-bottom: 1rem;
+  animation: fadeInDown 1.5s ease;
+}
+
+.hero .subtitle {
+  font-size: 1.3rem;
+  color: #fff;
+  opacity: 0.95;
+  font-weight: 300;
+  animation: fadeInUp 1.5s ease 0.3s backwards;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SECCIONES */
+.section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.section-content {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 3rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 35px rgba(255, 100, 150, 0.3);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2.3rem;
+  color: #e61e73;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(230, 30, 115, 0.3);
+}
+
+/* LO QUE ME GUSTA DE TI */
+.qualities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.quality-card {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.quality-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 100, 150, 0.4);
+}
+
+.quality-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.quality-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #d62870;
+  margin-bottom: 0.5rem;
+}
+
+.quality-text {
+  font-size: 0.95rem;
+  color: #60263a;
+  line-height: 1.6;
+}
+
+/* NUESTROS RECUERDOS */
+.memories {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.memory {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  border-radius: 20px;
+  border-left: 5px solid #ff5f9e;
+  transition: all 0.3s ease;
+}
+
+.memory:hover {
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(255, 100, 150, 0.3);
+}
+
+.memory-date {
+  font-size: 0.85rem;
+  color: #e61e73;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.memory-title {
+  font-size: 1.3rem;
+  color: #d62870;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.memory-text {
+  font-size: 1rem;
+  color: #60263a;
+  line-height: 1.7;
+}
+
+/* LO QUE ERES PARA MÍ */
+.about-you {
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: #60263a;
+  margin-top: 2rem;
+}
+
+.about-you p {
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #e61e73;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+/* PARA SIEMPRE */
+.forever-section {
+  text-align: center;
+}
+
+.forever-message {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #60263a;
+  margin: 2rem 0;
+}
+
+.heart-animation {
+  font-size: 4rem;
+  animation: heartbeat 1.5s ease infinite;
+  display: inline-block;
+  margin: 2rem 0;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+}
+
+.firma {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #d62870;
+  text-shadow: 0 2px 10px rgba(230, 30, 115, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .section-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .qualities {
+    grid-template-columns: 1fr;
+  }
+
+  .memory {
+    padding: 1.5rem;
+  }
+
+  .about-you {
+    font-size: 1rem;
+  }
+
+  .highlight {
+    font-size: 1.15rem;
+  }
+
+  .forever-message {
+    font-size: 1.05rem;
+  }
+
+  .heart-animation {
+    font-size: 3rem;
+  }
+
+  .firma {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .section-content {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
