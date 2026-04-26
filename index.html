@@ -4,251 +4,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isabella — Una Historia</title>
+  <title>Para Isabella 💘</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&family=Lora:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-  <!-- CURSOR -->
-  <div id="cursor">
-    <div class="cursor-dot"></div>
-  </div>
+  <!-- CURSOR PERSONALIZADO -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- NOISE OVERLAY -->
-  <div class="noise-overlay"></div>
-
-  <!-- VIGNETTE -->
-  <div class="vignette"></div>
-
-  <!-- ═══════════════════════════════════════
-     LOADER — "Cargando historia..."
-═══════════════════════════════════════ -->
-  <div class="loader" id="loader">
-    <canvas id="loaderCanvas"></canvas>
-    <div class="loader-content">
-      <div class="loader-filmstrip">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <p class="loader-eyebrow">Una historia verdadera</p>
-      <h1 class="loader-title">Isabella</h1>
-      <div class="loader-bar-wrap">
-        <div class="loader-bar" id="loaderBar"></div>
-      </div>
-      <p class="loader-caption" id="loaderCaption">Preparando recuerdos…</p>
-    </div>
-    <div class="loader-scanline"></div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-     ENTRADA — Pantalla de inicio
-═══════════════════════════════════════ -->
+  <!-- PANTALLA DE ENTRADA -->
   <div class="entry-screen" id="entryScreen">
-    <canvas id="entryCanvas"></canvas>
-    <div class="entry-letterbox top"></div>
-    <div class="entry-letterbox bottom"></div>
-    <div class="entry-center">
-      <p class="entry-studio">Kevin presenta</p>
-      <h1 class="entry-title">
-        <span data-letter="I">I</span><span data-letter="s">s</span><span data-letter="a">a</span><span
-          data-letter="b">b</span><span data-letter="e">e</span><span data-letter="l">l</span><span
-          data-letter="l">l</span><span data-letter="a">a</span>
-      </h1>
-      <p class="entry-tagline">Algunas personas llegan para quedarse en el corazón</p>
-      <button class="entry-cta" id="entryCta">
-        <span class="cta-icon">▶</span>
-        <span>Comenzar historia</span>
+    <div class="entry-particles" id="entryParticles"></div>
+    <div class="entry-content">
+      <div class="entry-glow"></div>
+      <p class="entry-label">Una carta especial</p>
+      <h1 class="entry-name">Isabella</h1>
+      <p class="entry-subtitle">Hay palabras que solo tú mereces leer</p>
+      <button class="entry-btn" id="entryBtn">
+        <span class="entry-btn-text">Comenzar 💘</span>
+        <span class="entry-btn-ring"></span>
       </button>
     </div>
-    <div class="entry-bottom">
-      <span class="entry-year">2024 · Una historia de amor</span>
-    </div>
   </div>
 
-  <!-- CHAPTER TRANSITION OVERLAY -->
-  <div class="chapter-overlay" id="chapterOverlay">
-    <div class="chapter-overlay-inner">
-      <span class="chapter-number" id="chapterNum"></span>
-      <span class="chapter-title-text" id="chapterTitleText"></span>
-    </div>
-  </div>
-
-  <!-- BOTONES FLOTANTES -->
-  <button class="fab fab-music" id="musicBtn" title="Música">
-    <span id="musicIcon">♪</span>
+  <!-- MÚSICA TOGGLE -->
+  <button class="music-btn" id="musicBtn" title="Música">
+    <span class="music-icon" id="musicIcon">♪</span>
   </button>
-  <button class="fab fab-top" id="backTop" title="Inicio">↑</button>
-  <audio id="bgAudio" loop>
+  <audio id="bgMusic" loop>
+    <!-- Silenced — user can replace src with a real audio file URL -->
     <source src="" type="audio/mpeg" />
   </audio>
 
-  <!-- CANVAS GLOBAL DE PARTÍCULAS -->
-  <canvas id="globalCanvas"></canvas>
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="back-top" id="backTop" title="Volver arriba">↑</button>
 
-  <!-- ═══════════════════════════════════════
-     CONTENIDO PRINCIPAL
-═══════════════════════════════════════ -->
-  <main id="main" class="main" aria-hidden="true">
+  <!-- FONDO DINÁMICO -->
+  <canvas class="bg-canvas" id="bgCanvas"></canvas>
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- CORAZONES FLOTANTES -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main" id="main">
 
     <!-- HERO -->
-    <section class="scene scene-hero" id="sceneHero" data-chapter="0">
-      <div class="hero-bg-canvas-wrap">
-        <canvas id="heroParticles"></canvas>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="hero-label reveal-item">para siempre</p>
+        <h1 class="hero-title">
+          <span class="hero-name" id="heroName">Isabella</span>
+          <span class="hero-heart">💘</span>
+        </h1>
+        <p class="hero-subtitle reveal-item">
+          Algunas personas llegan para quedarse en el corazón
+        </p>
+        <div class="hero-line reveal-item"></div>
+        <div class="scroll-hint">
+          <span>Desliza para descubrir</span>
+          <span class="scroll-arrow">↓</span>
+        </div>
       </div>
-      <div class="hero-content">
-        <p class="hero-act">Acto I</p>
-        <h2 class="hero-name">
-          <span class="hero-name-letter" style="--i:0">I</span><span class="hero-name-letter"
-            style="--i:1">s</span><span class="hero-name-letter" style="--i:2">a</span><span class="hero-name-letter"
-            style="--i:3">b</span><span class="hero-name-letter" style="--i:4">e</span><span class="hero-name-letter"
-            style="--i:5">l</span><span class="hero-name-letter" style="--i:6">l</span><span class="hero-name-letter"
-            style="--i:7">a</span>
-        </h2>
-        <div class="hero-divider"><span></span>💘<span></span></div>
-        <p class="hero-sub">Una carta escrita desde el corazón</p>
-      </div>
-      <div class="scroll-cue">
-        <div class="scroll-cue-line"></div>
-      </div>
+      <div class="hero-blur-circle"></div>
     </section>
 
-    <!-- SECCIÓN 1 — Lo que me gusta de ti -->
-    <section class="scene scene-qualities" id="sceneQualities" data-chapter="1"
-      data-chapter-name="Lo que me gusta de ti">
-      <div class="scene-ambient" data-color="rose"></div>
-      <div class="scene-content">
-        <header class="scene-header">
-          <span class="scene-num">01</span>
-          <h2 class="scene-title">Lo que me gusta <em>de ti</em></h2>
-          <p class="scene-intro">Hay cosas que guardas sin saber que las veo…</p>
-        </header>
-        <div class="cards-grid">
+    <!-- LO QUE ME GUSTA DE TI -->
+    <section class="section" id="sec1">
+      <div class="section-inner">
+        <div class="section-label">01</div>
+        <h2 class="section-title">Lo que me gusta de ti</h2>
+        <div class="qualities">
 
-          <article class="cine-card" data-delay="0">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">✨</div>
-            <h3>Tu sonrisa</h3>
-            <p>Esa que ilumina todo y hace que el día valga la pena. Tus hoyuelos son mi debilidad.</p>
+          <article class="quality-card">
+            <div class="quality-icon">✨</div>
+            <h3 class="quality-title">Tu sonrisa</h3>
+            <p class="quality-text">Esa que ilumina todo y hace que el día valga la pena. Tus hoyuelos son mi debilidad.
+            </p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card" data-delay="80">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">🥋</div>
-            <h3>Tu fuerza</h3>
-            <p>Eres taekwondo y determinación. Me encanta ver cómo enfrentas todo con esa valentía tuya.</p>
+          <article class="quality-card">
+            <div class="quality-icon">🥋</div>
+            <h3 class="quality-title">Tu fuerza</h3>
+            <p class="quality-text">Eres taekwondo y determinación. Me encanta ver cómo enfrentas todo con esa valentía
+              tuya.</p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card" data-delay="160">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">🌸</div>
-            <h3>Tu ternura</h3>
-            <p>Eres dulzura en persona. Tienes esa forma de hacer sentir bien sin decir nada.</p>
+          <article class="quality-card">
+            <div class="quality-icon">🌸</div>
+            <h3 class="quality-title">Tu ternura</h3>
+            <p class="quality-text">Eres dulzura en persona. Tienes esa forma de hacer sentir bien sin decir nada.</p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card" data-delay="240">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">👀</div>
-            <h3>Tu mirada</h3>
-            <p>Tus ojos tienen algo especial, como si guardaran secretos y sueños que solo tú conoces.</p>
+          <article class="quality-card">
+            <div class="quality-icon">👀</div>
+            <h3 class="quality-title">Tu mirada</h3>
+            <p class="quality-text">Tus ojos tienen algo especial, como si guardaran secretos y sueños que solo tú
+              conoces.</p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card" data-delay="320">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">🎨</div>
-            <h3>Tu esencia</h3>
-            <p>Eres arte sin querer. Todo en ti tiene magia, desde tu risa hasta tu forma de ser.</p>
+          <article class="quality-card">
+            <div class="quality-icon">🎨</div>
+            <h3 class="quality-title">Tu esencia</h3>
+            <p class="quality-text">Eres arte sin querer. Todo en ti tiene magia, desde tu risa hasta tu forma de ser.
+            </p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card" data-delay="400">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">💫</div>
-            <h3>Tu autenticidad</h3>
-            <p>No finges, no cambias. Eres real y eso es lo más bonito que tienes.</p>
+          <article class="quality-card">
+            <div class="quality-icon">💫</div>
+            <h3 class="quality-title">Tu autenticidad</h3>
+            <p class="quality-text">No finges, no cambias. Eres real y eso es lo más bonito que tienes.</p>
+            <div class="card-glow"></div>
           </article>
 
-          <article class="cine-card cine-card--wide" data-delay="480">
-            <div class="cine-card-glow"></div>
-            <div class="cine-card-icon">🌹</div>
-            <h3>Tu flow</h3>
-            <p>Tienes ese toque que no se copia, ese brillo que no se compra. Como una canción de Feid, te quedas
-              sonando en la mente y en el corazón. 💘</p>
+          <article class="quality-card quality-card--feid">
+            <div class="quality-icon">🌹</div>
+            <h3 class="quality-title">Tu flow</h3>
+            <p class="quality-text">Tienes ese toque que no se copia, ese brillo que no se compra. Como una canción de
+              Feid, te quedas sonando en la mente y en el corazón. 💘</p>
+            <div class="card-glow"></div>
           </article>
 
         </div>
       </div>
     </section>
 
-    <!-- INTERLUDE 1 -->
-    <div class="interlude" id="interlude1">
-      <div class="interlude-line"></div>
-      <p class="interlude-text">"Desde el primer día supe que eras diferente"</p>
-      <div class="interlude-line"></div>
+    <!-- DIVIDER -->
+    <div class="section-divider">
+      <span>💘</span>
     </div>
 
-    <!-- SECCIÓN 2 — Nuestros recuerdos -->
-    <section class="scene scene-memories" id="sceneMemories" data-chapter="2" data-chapter-name="Nuestros recuerdos">
-      <div class="scene-ambient" data-color="gold"></div>
-      <div class="scene-content">
-        <header class="scene-header">
-          <span class="scene-num">02</span>
-          <h2 class="scene-title">Nuestros <em>recuerdos</em></h2>
-          <p class="scene-intro">Los momentos que me dieron razones…</p>
-        </header>
-        <div class="memories-timeline">
+    <!-- NUESTROS RECUERDOS -->
+    <section class="section" id="sec2">
+      <div class="section-inner">
+        <div class="section-label">02</div>
+        <h2 class="section-title">Nuestros recuerdos 💘</h2>
+        <div class="memories">
 
-          <div class="timeline-rail"></div>
-
-          <article class="mem-item" data-dir="left">
-            <div class="mem-dot">01</div>
-            <div class="mem-card">
-              <p class="mem-when">Aquel día que…</p>
-              <h3 class="mem-title">Te pedí ser mi novia</h3>
-              <p class="mem-body">Recuerdo cómo te pedí ser novios, con flores y dulces a la salida del colegio. Aún
+          <article class="memory">
+            <div class="memory-number">01</div>
+            <div class="memory-body">
+              <p class="memory-date">Aquel día que…</p>
+              <h3 class="memory-title">Te pedí ser mi novia</h3>
+              <p class="memory-text">Recuerdo cómo te pedí ser novios, con flores y dulces a la salida del colegio. Aún
                 tengo grabada tu sonrisa cuando dijiste que sí, fue uno de los momentos más lindos de mi vida.</p>
             </div>
           </article>
 
-          <article class="mem-item" data-dir="right">
-            <div class="mem-dot">02</div>
-            <div class="mem-card">
-              <p class="mem-when">Esa vez que…</p>
-              <h3 class="mem-title">Me rebelé por ti</h3>
-              <p class="mem-body">Aquella vez que me rebelé frente a mis papás solo para poder ir a conocerte a ti, a tu
-                familia y a tu hermano. Lo volvería a hacer mil veces, porque valió la pena verte feliz.</p>
+          <article class="memory">
+            <div class="memory-number">02</div>
+            <div class="memory-body">
+              <p class="memory-date">Esa vez que…</p>
+              <h3 class="memory-title">Me rebelé por ti</h3>
+              <p class="memory-text">Aquella vez que me rebelé frente a mis papás solo para poder ir a conocerte a ti, a
+                tu familia y a tu hermano. Lo volvería a hacer mil veces, porque valió la pena verte feliz.</p>
             </div>
           </article>
 
-          <article class="mem-item" data-dir="left">
-            <div class="mem-dot">03</div>
-            <div class="mem-card">
-              <p class="mem-when">Cuando decidimos…</p>
-              <h3 class="mem-title">Volver a ser nosotros</h3>
-              <p class="mem-body">Nos escapamos solo para arreglar las cosas, para volver a ser amigos, no solo
+          <article class="memory">
+            <div class="memory-number">03</div>
+            <div class="memory-body">
+              <p class="memory-date">Cuando decidimos…</p>
+              <h3 class="memory-title">Volver a ser nosotros</h3>
+              <p class="memory-text">Nos escapamos solo para arreglar las cosas, para volver a ser amigos, no solo
                 conocidos. Ese día entendí que lo nuestro siempre encuentra el camino de regreso.</p>
             </div>
           </article>
 
-          <article class="mem-item" data-dir="right">
-            <div class="mem-dot">04</div>
-            <div class="mem-card">
-              <p class="mem-when">Cada vez que…</p>
-              <h3 class="mem-title">Te veo sonreír</h3>
-              <p class="mem-body">Me alegra verte sonreír, Isabella. Cuando lo haces, todo a mi alrededor mejora. Eres
-                esa razón que hace que mis días se llenen de color.</p>
+          <article class="memory">
+            <div class="memory-number">04</div>
+            <div class="memory-body">
+              <p class="memory-date">Cada vez que…</p>
+              <h3 class="memory-title">Te veo sonreír</h3>
+              <p class="memory-text">Me alegra verte sonreír, Isabella. Cuando lo haces, todo a mi alrededor mejora.
+                Eres esa razón que hace que mis días se llenen de color.</p>
             </div>
           </article>
 
-          <article class="mem-item" data-dir="left">
-            <div class="mem-dot">05</div>
-            <div class="mem-card">
-              <p class="mem-when">Y sobre todo…</p>
-              <h3 class="mem-title">Cada vez que te miro</h3>
-              <p class="mem-body">Cada vez que te veo, me alegra el alma. No sé qué tienen tus ojos, pero desde el
+          <article class="memory">
+            <div class="memory-number">05</div>
+            <div class="memory-body">
+              <p class="memory-date">Y sobre todo…</p>
+              <h3 class="memory-title">Cada vez que te miro</h3>
+              <p class="memory-text">Cada vez que te veo, me alegra el alma. No sé qué tienen tus ojos, pero desde el
                 primer día, supe que ahí quería quedarme.</p>
             </div>
           </article>
@@ -257,56 +211,47 @@
       </div>
     </section>
 
-    <!-- INTERLUDE 2 -->
-    <div class="interlude" id="interlude2">
-      <div class="interlude-line"></div>
-      <p class="interlude-text">"Eres el tipo de persona que te cambia la vida sin querer"</p>
-      <div class="interlude-line"></div>
+    <!-- DIVIDER -->
+    <div class="section-divider">
+      <span>💘</span>
     </div>
 
-    <!-- SECCIÓN 3 — Lo que eres para mí -->
-    <section class="scene scene-poem" id="scenePoem" data-chapter="3" data-chapter-name="Lo que eres para mí">
-      <div class="scene-ambient" data-color="purple"></div>
-      <div class="scene-content scene-content--centered">
-        <header class="scene-header scene-header--center">
-          <span class="scene-num">03</span>
-          <h2 class="scene-title">Lo que eres <em>para mí</em></h2>
-        </header>
-        <div class="poem-lines">
-          <p class="poem-line" data-i="0">Eres <strong>calma en medio del caos</strong></p>
-          <p class="poem-line" data-i="1">Eres <strong>la sonrisa que busco</strong> cuando todo se pone difícil</p>
-          <p class="poem-line" data-i="2">Eres <strong>inspiración</strong> sin saberlo</p>
-          <p class="poem-line" data-i="3">Eres <strong>esa persona</strong> que no sabía que necesitaba</p>
-          <p class="poem-line" data-i="4">Eres <strong>presente y futuro</strong> al mismo tiempo</p>
-          <p class="poem-line" data-i="5">Eres <strong>hogar</strong> sin tener que serlo</p>
-          <p class="poem-line poem-line--final" data-i="6">Eres <strong>tú, Isabella</strong>, y eso es más que
-            suficiente</p>
+    <!-- LO QUE ERES PARA MÍ -->
+    <section class="section" id="sec3">
+      <div class="section-inner section-inner--centered">
+        <div class="section-label">03</div>
+        <h2 class="section-title">Lo que eres para mí</h2>
+        <div class="about-you">
+          <p class="about-line"><span>Eres </span><em class="highlight">calma en medio del caos</em></p>
+          <p class="about-line"><span>Eres </span><em class="highlight">la sonrisa que busco</em><span> cuando todo se
+              pone difícil</span></p>
+          <p class="about-line"><span>Eres </span><em class="highlight">inspiración</em><span> sin saberlo</span></p>
+          <p class="about-line"><span>Eres </span><em class="highlight">esa persona</em><span> que no sabía que
+              necesitaba</span></p>
+          <p class="about-line"><span>Eres </span><em class="highlight">presente y futuro</em><span> al mismo
+              tiempo</span></p>
+          <p class="about-line"><span>Eres </span><em class="highlight">hogar</em><span> sin tener que serlo</span></p>
+          <p class="about-line about-line--final"><span>Eres </span><em class="highlight">tú, Isabella</em><span>, y eso
+              es más que suficiente</span></p>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN FINAL — Para siempre -->
-    <section class="scene scene-final" id="sceneFinal" data-chapter="4" data-chapter-name="Para siempre">
-      <canvas id="finalCanvas"></canvas>
-      <div class="final-veil" id="finalVeil"></div>
-      <div class="scene-content scene-content--centered final-content">
-        <div class="final-act">Acto Final</div>
-        <h2 class="final-title">Para siempre <span class="final-heart-inline" id="finalHeartInline">💘</span></h2>
-        <div class="final-message-wrap">
-          <p class="final-message" id="finalMessage">
-            No sé qué nos depara el futuro, pero sé que quiero que estés en él.<br />
-            Quiero seguir descubriendo cosas de ti, seguir compartiendo momentos<br />
-            que se conviertan en recuerdos que me hagan sonreír.<br /><br />
-            Porque contigo, Isabella, todo se siente diferente.<br />
-            Todo se siente <em>bien</em>.
-          </p>
-        </div>
-        <div class="firma-wrap" id="firmaWrap">
-          <div class="firma-line"></div>
-          <p class="firma">— Kevin 💘</p>
-        </div>
-        <!-- HEARTS BURST -->
-        <div class="hearts-burst" id="heartsBurst"></div>
+    <!-- PARA SIEMPRE - FINAL ESPECIAL -->
+    <section class="section section--final" id="secFinal">
+      <div class="final-burst" id="finalBurst"></div>
+      <div class="section-inner section-inner--centered">
+        <div class="section-label">fin</div>
+        <h2 class="section-title section-title--final">Para siempre 💘</h2>
+        <div class="final-heart" id="finalHeart">💘</div>
+        <p class="forever-message">
+          No sé qué nos depara el futuro, pero sé que quiero que estés en él.<br />
+          Quiero seguir descubriendo cosas de ti, seguir compartiendo momentos<br />
+          que se conviertan en recuerdos que me hagan sonreír.<br /><br />
+          Porque contigo, Isabella, todo se siente diferente.<br />
+          Todo se siente <strong>bien</strong>.
+        </p>
+        <p class="firma">— Kevin 💘</p>
       </div>
     </section>
 
